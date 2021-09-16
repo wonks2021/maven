@@ -6,7 +6,7 @@ pipeline {
 	stages {
 	    stage('Git CheckOut') {
 		    steps {
-			   git branch: 'main', credentialsId: 'My private token login creds', url: 'https://github.com/logicopslab/WebAppForJenkins.git'
+			   git branch: 'main', credentialsId: '', url: 'https://github.com/logicopslab/WebAppForJenkins.git'
 			}
 		}
         stage('Clean and Install') {
@@ -23,9 +23,9 @@ pipeline {
             steps {
                rtServer (
                  id: "Artifactory",
-                 url: 'http://localhost:8082/artifactory',
-                 username: 'ravish',
-                  password: 'YouPasswordHere',
+                 url: 'http://52.15.132.83:8082/artifactory',
+                 username: 'admin',
+                  password: 'Password1',
                   bypassProxy: true,
                    timeout: 300
                         )
@@ -39,7 +39,7 @@ pipeline {
                    "files": [
                       {
                       "pattern": "*.war",
-                      "target": "logic-ops-lab-libs-snapshot-local"
+                      "target": "maven101-libs-snapshot-local"
                       }
                             ]
                            }''',
